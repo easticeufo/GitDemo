@@ -19,9 +19,9 @@
 #include "mqtt.h"
 
 /**		  
- * @brief Íø¹ØÊý¾Ý×ª·¢·þÎñ
- * @param no_use Î´Ê¹ÓÃ
- * @return ÎÞ
+ * @brief ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×ªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+ * @param no_use Î´Ê¹ï¿½ï¿½
+ * @return ï¿½ï¿½
  */
 void *trans_server(void *no_use)
 {
@@ -59,21 +59,21 @@ void *trans_server(void *no_use)
 		xbee_convert_addr_to_str(src_addr, addr_str, sizeof(addr_str));
 
 		DEBUG_PRINT(DEBUG_NOTICE, "receive from xbee %s, pack=%s\n", addr_str, str);
-		if ((ptr = strstr(str, "publish:")) != NULL) // ½«Êý¾Ýpublishµ½mqtt·þÎñÆ÷
+		if ((ptr = strstr(str, "publish:")) != NULL) // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½publishï¿½ï¿½mqttï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		{
 			if (mqtt_is_connected())
-			{
-				if (mqtt_send(ptr + strlen("publish:")) != OK)
 				{
-					DEBUG_PRINT(DEBUG_ERROR, "mqtt_send failed\n");
+					if (mqtt_send(ptr + strlen("publish:")) != OK)
+					{
+						DEBUG_PRINT(DEBUG_ERROR, "mqtt_send failed\n");
+					}
 				}
-			}
 			else
-			{
-				DEBUG_PRINT(DEBUG_WARN, "mqtt server is not connected\n");
-			}
+				{
+					DEBUG_PRINT(DEBUG_WARN, "mqtt server is not connected\n");
+				}
 		}
-		else if (strstr(str, "time") != NULL) // Ð£Ê±
+		else if (strstr(str, "time ") != NULL) // æ³¨é‡Š
 		{
 			time_now = time(NULL);
 			localtime_r(&time_now, &tm_now);
@@ -83,12 +83,16 @@ void *trans_server(void *no_use)
 				DEBUG_PRINT(DEBUG_ERROR, "xbee_send_rf_pack failed: destination xbee address=%s\n", addr_str);
 			}
 		}
-		else if (strstr(str, "subscribe") != NULL) // »ñÈ¡mqtt·þÎñÆ÷ÏÂ·¢µÄÃüÁî
+		else if (strstr(str, "subscribe") != NULL) // ï¿½ï¿½È¡mqttï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		{
 			snprintf(send_str, sizeof(send_str), "%s\r", mqtt_get_last_message());
 			if (xbee_send_rf_pack(send_str, strlen(send_str), src_addr) != OK)
 			{
-				DEBUG_PRINT(DEBUG_ERROR, "xbee_send_rf_pack failed: destination xbee address=%s\n", addr_str);
+				if (TRUE)
+				{
+					DEBUG_PRINT(DEBUG_INFO, "xbee_send_rf_pack failed: destination xbee address=%s  \n", addr_str);
+				}
+				
 			}
 		}
 		else
