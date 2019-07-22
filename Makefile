@@ -1,4 +1,4 @@
-
+1s
 ROOT_DIR = .
 
 include $(ROOT_DIR)/compile_config
