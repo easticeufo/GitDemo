@@ -24,7 +24,6 @@ LIBS += $(LIBS_DIR)/libupnp.a
 LIBS += $(LIBS_DIR)/libixml.a
 LIBS += $(LIBS_DIR)/libthreadutil.a
 
-#Á´½Ó¶¯Ì¬¿â
 LIBS += -lpthread
 LIBS += -ldl
 LIBS += -lm
