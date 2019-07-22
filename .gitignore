@@ -1,9 +1,30 @@
-.DS_Store
-.svn/
-._*
-system.ini
-build/
-package/LampControlGateway
-package/firmware*
-test/test_daemon
+ See http://help.github.com/ignore-files/ for more about ignoring files.
 
+# compiled output
+/build
+/package/LampControlGateway
+/package/firmware*
+/test/test_daemon
+/dist
+/tmp
+
+# dependencies
+/node_modules
+
+# IDEs and editors
+/.idea
+.project
+.classpath
+/target
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.history/*
+
+# System Files
+.DS_Store
+Thumbs.db
