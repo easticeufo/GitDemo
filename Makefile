@@ -11,7 +11,6 @@ INCLUDES :=
 INCLUDES += -I$(ROOT_DIR)/include
 
 LIBS := 
-#链接静态库
 #mqtt相关库
 LIBS += $(LIBS_DIR)/libmqtt.a
 #appweb相关库
@@ -24,7 +23,6 @@ LIBS += $(LIBS_DIR)/libupnp.a
 LIBS += $(LIBS_DIR)/libixml.a
 LIBS += $(LIBS_DIR)/libthreadutil.a
 
-#链接动态库
 LIBS += -lpthread
 LIBS += -ldl
 LIBS += -lm
