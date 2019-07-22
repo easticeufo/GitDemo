@@ -3,7 +3,6 @@ ROOT_DIR = .
 
 include $(ROOT_DIR)/compile_config
 
-CC := $(TOOL_PREFIX)gcc
 
 LIBS_DIR := $(ROOT_DIR)/libs
 
